@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_02_26_153446) do
+ActiveRecord::Schema.define(version: 2020_02_27_152503) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -22,4 +22,14 @@ ActiveRecord::Schema.define(version: 2020_02_26_153446) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  create_table "packages", force: :cascade do |t|
+    t.string "tracking_number"
+    t.bigint "courier_id"
+    t.string "delivery_status"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["courier_id"], name: "index_packages_on_courier_id"
+  end
+
+  add_foreign_key "packages", "couriers"
 end

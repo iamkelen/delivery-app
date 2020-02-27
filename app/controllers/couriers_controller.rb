@@ -9,7 +9,12 @@ class CouriersController < ApplicationController
 
   def create
     @courier = Courier.create(permitted_params)
-    redirect_to courier_path(@courier), notice: 'Courier was successfully created.'
+    if @courier.valid?
+      redirect_to courier_path(@courier), notice: 'Courier was successfully created.'
+    else
+      flash[:alert] = 'Eshe odno slovo'
+      render :new
+    end
   end
 
   def show
@@ -22,8 +27,12 @@ class CouriersController < ApplicationController
 
   def update
     @courier = Courier.find(params[:id])
-    @courier.update(permitted_params)
-    redirect_to courier_path(@courier)
+    if @courier.update(permitted_params)
+      redirect_to courier_path(@courier), notice: 'Courier was successfully updated.'
+    else
+      flash[:alert] = 'Eshe odno slovo'
+      render :edit
+    end
   end
 
   def destroy
