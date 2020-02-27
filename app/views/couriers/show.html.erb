@@ -1,0 +1,11 @@
+<h3>
+  <%= @courier.name %>
+</h3>
+
+<p id="notice"><%= notice %></p>
+<p>
+  <%= @courier.email %>
+</p>
+
+<%= link_to 'Edit', edit_courier_path(@courier), :class => 'ui button' %>
+<%= link_to 'Back', couriers_path, :class => 'ui button' %>

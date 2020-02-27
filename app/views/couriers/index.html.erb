@@ -1,1 +1,14 @@
-<h1>Hello world!</h1>
+<h1>Hello couriers!</h1>
+<%= link_to 'New', new_courier_path %>
+<div>
+  <ul>
+    <% @couriers.each do |courier| %>
+      <li><%= courier.name %></li>
+      <li><%= courier.email %></li>
+      <%= link_to 'Show', courier_path(courier) %>
+      <%= link_to 'Edit', edit_courier_path(courier) %>
+      <%= link_to 'Delete', courier, method: :delete, data: { confirm: 'Are you sure?' } %>
+    <% end %>
+  </ul>
+
+</div>

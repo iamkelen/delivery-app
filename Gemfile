@@ -10,6 +10,7 @@ gem 'sass-rails'
 gem 'webpacker'
 gem 'turbolinks'
 gem 'jbuilder'
+gem 'pry-rails'
 
 gem 'bootsnap', require: false
 
