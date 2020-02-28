@@ -1,4 +1,5 @@
 class CouriersController < ApplicationController
+  before_action :find_courier, only: [:show, :edit, :update, :destroy]
   def index
     @couriers = Courier.all
   end
@@ -12,37 +13,34 @@ class CouriersController < ApplicationController
     if @courier.valid?
       redirect_to courier_path(@courier), notice: 'Courier was successfully created.'
     else
-      flash[:alert] = 'Eshe odno slovo'
       render :new
     end
   end
 
-  def show
-    @courier = Courier.find(params[:id])
-  end
+  def show; end
 
-  def edit
-    @courier = Courier.find(params[:id])
-  end
+  def edit; end
 
   def update
-    @courier = Courier.find(params[:id])
     if @courier.update(permitted_params)
       redirect_to courier_path(@courier), notice: 'Courier was successfully updated.'
     else
-      flash[:alert] = 'Eshe odno slovo'
       render :edit
     end
   end
 
   def destroy
-    courier = Courier.find(params[:id])
-    courier.destroy
+    @courier.destroy
     redirect_to couriers_path
   end
 
   private
+
   def permitted_params
     params.require(:courier).permit(:name, :email)
+  end
+
+  def find_courier
+    @courier = Courier.find(params[:id])
   end
 end

@@ -1,4 +1,5 @@
 class PackagesController < ApplicationController
+  before_action :find_package, only: [:show, :edit, :update, :destroy]
   def new
     @package = Package.new
   end
@@ -8,37 +9,35 @@ class PackagesController < ApplicationController
     if @package.valid?
       redirect_to package_path(@package), notice: 'Package was successfully created.'
     else
-      flash[:alert] = 'Eshe odno slovo'
       render :new
     end
   end
 
-  def show
-    @package = Package.find(params[:id])
-  end
+  def show; end
 
-  def edit
-    @package = Package.find(params[:id])
-  end
+  def edit; end
 
   def update
-    @package = Package.find(params[:id])
     if @package.update(permitted_params)
       redirect_to package_path(@package), notice: 'Package was successfully updated.'
     else
-      flash[:alert] = 'Eshe odno slovo'
       render :edit
     end
   end
 
   def destroy
-    package = Package.find(params[:id])
-    package.destroy
+    @package.destroy
     redirect_to courier_path(package.courier)
   end
 
   private
+
   def permitted_params
     params.require(:package).permit(:tracking_number, :delivery_status)
   end
+
+  def find_package
+    @package = Package.find(params[:id])
+  end
+
 end
