@@ -4,8 +4,13 @@ class PackagesController < ApplicationController
   end
 
   def create
-    @package = Package.create!(permitted_params.merge(courier_id: params[:courier_id]))
-    redirect_to package_path(@package), notice: 'Package was succesfully created.'
+    @package = Package.create(permitted_params.merge(courier_id: params[:courier_id]))
+    if @package.valid?
+      redirect_to package_path(@package), notice: 'Package was successfully created.'
+    else
+      flash[:alert] = 'Eshe odno slovo'
+      render :new
+    end
   end
 
   def show
@@ -18,8 +23,12 @@ class PackagesController < ApplicationController
 
   def update
     @package = Package.find(params[:id])
-    @package.update(permitted_params)
-    redirect_to package_path(@package)
+    if @package.update(permitted_params)
+      redirect_to package_path(@package), notice: 'Package was successfully updated.'
+    else
+      flash[:alert] = 'Eshe odno slovo'
+      render :edit
+    end
   end
 
   def destroy

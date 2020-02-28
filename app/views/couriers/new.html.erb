@@ -1,6 +1,17 @@
 <h1>Create courier</h1>
 
 <p id="alert"><%= alert %></p>
+<% if @courier.errors.any? %>
+  <div>
+    <p><%= pluralize(@courier.errors.count, "error") %> prohibited this courier from being saved:</p>
+
+    <ul>
+      <% @courier.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+    </ul>
+  </div>
+<% end %>
 
 <%= form_with(model: @courier, local: true) do |form| %>
   <div>
