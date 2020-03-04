@@ -6,11 +6,11 @@ ruby '2.6.5'
 gem 'jbuilder'
 gem 'pg'
 gem 'puma'
-gem 'rails', '~> 6.0.2', '>= 6.0.2.1'
+gem 'rails'
 gem 'sass-rails'
 gem 'turbolinks'
 gem 'webpacker'
-gem 'bootstrap', '~> 4.0.0'
+gem 'bootstrap'
 gem 'bootsnap', require: false
 
 group :development, :test do

@@ -1,14 +1,23 @@
-<h1>Hello couriers!</h1>
-<%= link_to 'New', new_courier_path %>
-<div>
-  <ul>
-    <% @couriers.each do |courier| %>
-      <li><%= courier.name %></li>
-      <li><%= courier.email %></li>
-      <%= link_to 'Show', courier_path(courier) %>
-      <%= link_to 'Edit', edit_courier_path(courier) %>
-      <%= link_to 'Delete', courier, method: :delete, data: { confirm: 'Are you sure?' } %>
-    <% end %>
-  </ul>
+<div class='pb-3'>
+  <h1>Hello couriers!</h1>
+  <%= link_to 'New', new_courier_path, class: 'btn btn-success' %>
+</div>
 
+<div class='row'>
+  <% @couriers.each do |courier| %>
+    <div class='col-3'>
+      <div class='pb-3'>
+        <div class='card text-center bg-light'>
+          <div class='card-body'>
+            <h5 class='card-title'><%= courier.name %></h5>
+            <div class='card-text'><%= courier.email %></div>
+            <br />
+            <%= link_to 'Show', courier_path(courier), class: 'btn btn-primary' %>
+            <%= link_to 'Edit', edit_courier_path(courier), class: 'btn btn-primary' %>
+            <%= link_to 'Delete', courier, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger' %>
+          </div>
+        </div>
+      </div>
+    </div>
+  <% end %>
 </div>
