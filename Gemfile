@@ -3,24 +3,29 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
 ruby '2.6.5'
 
-gem 'rails', '~> 6.0.2', '>= 6.0.2.1'
+gem 'jbuilder'
 gem 'pg'
 gem 'puma'
+gem 'rails'
 gem 'sass-rails'
-gem 'webpacker'
 gem 'turbolinks'
-gem 'jbuilder'
-gem 'pry-rails'
-
+gem 'webpacker'
+gem 'bootstrap'
 gem 'bootsnap', require: false
 
 group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
+  gem 'rspec-rails'
+  gem 'rubocop'
+  gem 'shoulda-matchers'
+  gem 'pry-rails'
+  gem 'capybara'
+  gem 'webdrivers'
 end
 
 group :development do
-  gem 'web-console'
   gem 'listen'
   gem 'spring'
   gem 'spring-watcher-listen'
+  gem 'web-console'
 end

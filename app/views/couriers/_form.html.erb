@@ -1,5 +1,5 @@
 <% if @courier.errors.any? %>
-  <div>
+  <div class="alert alert-danger">
     <p><%= pluralize(@courier.errors.count, "error") %> prohibited this courier from being saved:</p>
 
     <ul>
@@ -10,18 +10,23 @@
   </div>
 <% end %>
 
-<%= form_with(model: @courier, local: true) do |form| %>
-  <div>
-    <%= form.label :name %>
-    <%= form.text_field :name %>
-  </div>
+<div class="row">
+  <div class="col-6">
+    <%= form_with(model: @courier, local: true) do |form| %>
+      <div class='form-group'>
+        <%= form.label :name, for: 'input_name' %>
+        <%= form.text_field :name, id: 'input_name', class: 'form-control', placeholder: 'Enter name', autofocus: true %>
+      </div>
 
-  <div>
-    <%= form.label :email %>
-    <%= form.text_area :email %>
-  </div>
+      <div class='form-group'>
+        <%= form.label :email, for: 'input_email' %>
+        <%= form.text_area :email, id: 'input_email', class: 'form-control', placeholder: 'Enter email' %>
+        <small id="email_help" class="form-text text-muted">We'll never share your email with anyone else.</small>
+      </div>
 
-  <div>
-    <%= form.submit %>
+      <div>
+        <%= form.submit class: 'btn btn-success' %>
+      </div>
+    <% end %>
   </div>
-<% end %>
+</div>

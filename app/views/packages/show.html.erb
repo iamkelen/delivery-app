@@ -1,11 +1,17 @@
-<h3>
-  <%= @package.tracking_number %>
-</h3>
+<% if notice %>
+  <div class='alert alert-info'>
+    <%= notice %>
+  </div>
+<% end %>
 
-<p id="notice"><%= notice %></p>
-<p>
-  <%= @package.humanized_delivery_status %>
-</p>
+<div class='pb-3'>
+  <h3>
+    <%= @package.tracking_number %>
+  </h3>
+  <p>
+    <%= @package.humanized_delivery_status %>
+  </p>
+</div>
 
-<%= link_to 'Edit', edit_package_path(@package)  %>
-<%= link_to 'Back', courier_path(@package.courier) %>
+<%= link_to 'Edit', edit_package_path(@package), class: 'btn btn-primary'  %>
+<%= link_to 'Back', courier_path(@package.courier), class: 'btn btn-primary' %>
