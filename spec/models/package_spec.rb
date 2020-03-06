@@ -7,6 +7,7 @@ RSpec.describe Package, type: :model do
 
   describe 'validations' do
     it { is_expected.to validate_presence_of(:tracking_number) }
+    it { is_expected.to validate_length_of(:tracking_number).is_at_most(15) }
     it { is_expected.to have_db_column(:delivery_status).of_type(:boolean) }
   end
 
