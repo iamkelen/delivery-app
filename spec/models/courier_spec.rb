@@ -2,7 +2,7 @@ require 'rails_helper'
 
 RSpec.describe Courier, type: :model do
   describe 'associations' do
-    it { is_expected.to have_many(:packages) }
+    it { is_expected.to have_many(:packages).dependent(:destroy) }
   end
 
   describe 'validations' do
@@ -14,7 +14,7 @@ RSpec.describe Courier, type: :model do
   end
 
   describe 'columns' do
-
+    it { is_expected.to have_db_column(:name).of_type(:string) }
+    it { is_expected.to have_db_column(:email).of_type(:string) }
   end
-
 end

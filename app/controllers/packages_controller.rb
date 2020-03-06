@@ -27,7 +27,7 @@ class PackagesController < ApplicationController
 
   def destroy
     @package.destroy
-    redirect_to courier_path(package.courier)
+    redirect_to courier_path(@package.courier)
   end
 
   private

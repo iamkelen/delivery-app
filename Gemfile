@@ -19,6 +19,8 @@ group :development, :test do
   gem 'rubocop'
   gem 'shoulda-matchers'
   gem 'pry-rails'
+  gem 'capybara'
+  gem 'webdrivers'
 end
 
 group :development do
